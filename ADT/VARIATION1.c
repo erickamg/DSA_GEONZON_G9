@@ -18,11 +18,13 @@ int main(){
     L = initialize(L);
     int num = 1;
     
-     for(int i = 0; i <= 5; i++){
+     for(int i = 0; i < 5; i++){
         L.elem[i] = num;
         num++;
         L.count++;
     }
+
+    return 0;
 }
 
 List initialize(List L){
@@ -33,8 +35,8 @@ List initialize(List L){
 List insertPos(List L, int data, int position){
     int x;
 
-    if(L.count < MAX){
-        if(position >= 0 && position <= L.count){
+    if(L.count < MAX){ //The array must not be full
+        if(position >= 0 && position <= L.count){ //position must be valid
             for(x = L.count; x > position - 1; x--){
                 L.elem[x] = L.elem[x-1];
             }
@@ -48,5 +50,5 @@ List insertPos(List L, int data, int position){
 }
 
 List deletePos(List L, int position){
-    
+
 }
