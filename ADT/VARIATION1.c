@@ -16,14 +16,15 @@ List deletePos(List L, int position);
 int main(){
     List L;
     L = initialize(L);
-    int num = 1;
+    // int num = 1;
     
-     for(int i = 0; i < 5; i++){
-        L.elem[i] = num;
-        num++;
-        L.count++;
-    }
+    //  for(int i = 0; i < 5; i++){
+    //     L.elem[i] = num;
+    //     num++;
+    //     L.count++;
+    // }
 
+    L = insertPos(L, 1, 0);
     return 0;
 }
 
