@@ -16,15 +16,18 @@ List deletePos(List L, int position);
 int main(){
     List L;
     L = initialize(L);
-    // int num = 1;
-    
-    //  for(int i = 0; i < 5; i++){
-    //     L.elem[i] = num;
-    //     num++;
-    //     L.count++;
-    // }
+    int num = 1;
 
-    L = insertPos(L, 1, 0);
+    for(int i = 0; i < 8; i++){
+        L = insertPos(L, num, i);
+        num++;
+    }
+
+    for(int i = 0; i < 5; i++){
+        printf("%d ", L.elem[i]);
+    }
+
+
     return 0;
 }
 
@@ -51,5 +54,5 @@ List insertPos(List L, int data, int position){
 }
 
 List deletePos(List L, int position){
-
+    
 }
