@@ -110,5 +110,20 @@ int locate (List L, int data){
 }
 
 List insertSorted(List L, int data){
-    
+    int i;
+
+    if(L.count < MAX){
+        for(i = 0; i < L.count && L.elem[i] < data; i++){}
+
+        if(i < L.count){
+            for(int j = i; j < L.count - 1; j++){
+                L.elem[j] = L.elem[j + 1];
+            }
+
+            L.elem[i] = data;
+        }
+
+    }
+
+    return L;
 }
