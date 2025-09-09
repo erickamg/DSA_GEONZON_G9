@@ -14,6 +14,7 @@ List insertPos(List L, int data, int position);
 List deletePos(List L, int position);
 int locate (List L, int data);
 List insertSorted(List L, int data);
+void display(List L);
 
 int main(){
     List L;
@@ -26,28 +27,29 @@ int main(){
     }
     
     printf("Array after inserting at position: ");
-    for(int i = 0; i < 8; i++){
-        printf("%d ", L.elem[i]);
-    }
+    display(L);
 
     L = deletePos(L, 4);
-
+    
     printf("\n");
     
     printf("\nArray after deleting at position:");
-    for(int i = 0; i < L.count; i++){
-        printf("%d ", L.elem[i]);
-    }
+    display(L);
     
     printf("\n\nEnter data to locate: ");
     scanf("%d", &d);
     j = locate (L, d);
     if(j > 0){
-        printf("\nData %d is located at position %d", d, j);
+        printf("Data %d is located at position %d", d, j);
     }else{
         printf("\nData %d could not be located.", d, j);
     }
 
+    L = insertSorted(L, 4);
+
+    printf("\n\nData after Insert Sorted: ");
+    display(L);
+    
     return 0;
 }
 
@@ -112,6 +114,8 @@ int locate (List L, int data){
 List insertSorted(List L, int data){
     int i;
 
+    //Assume array is sorted
+
     if(L.count < MAX){
         for(i = L.count - 1; i >= 0 && data < L.elem[i]; i--){
             L.elem[i + 1] = L.elem[i];
@@ -122,4 +126,12 @@ List insertSorted(List L, int data){
     }
 
     return L;
+}
+
+void display(List L){
+    
+    for(int i = 0; i < L.count; i++){
+        printf("%d ", L.elem[i]);
+    }
+
 }
