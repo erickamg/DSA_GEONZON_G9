@@ -113,15 +113,11 @@ List insertSorted(List L, int data){
     int i;
 
     if(L.count < MAX){
-        for(i = 0; i < L.count && L.elem[i] < data; i++){}
-
-        if(i < L.count){
-            for(int j = i; j < L.count - 1; j++){
-                L.elem[j] = L.elem[j + 1];
-            }
-
-            L.elem[i] = data;
+        for(i = L.count - 1; i >= 0 && data < L.elem[i]; i--){
+            L.elem[i + 1] = L.elem[i];
         }
+
+        L.elem[i + 1] = data;
 
     }
 
