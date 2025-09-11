@@ -19,7 +19,28 @@ void display(EPtr L);
 void makeNULL(EPtr L);
 
 int main(){
-    EPtr L;
+    EPtr L = (EPtr)malloc(sizeof(Etype));
+
+    initialize(L);
+
+    for(int i = 0; i < 8; i++){
+        insertPos(L, i + 1, i + 1);
+    }
+    printf("List after inserting at position:\n");
+    display(L);
+
+    deletePos(L, 6);
+    printf("List after deleting at position:\n");
+    display(L);
+
+    int data;
+    printf("Enter data: ");
+    scanf("%d", &data);
+    int pos = locate(L, data);
+    printf("Locating data %d at position %d", data, pos);
+
+    
+
 }
 
 void initialize(EPtr L){
