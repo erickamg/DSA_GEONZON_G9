@@ -15,6 +15,8 @@ void deletePos(EPtr L, int position);
 int locate(EPtr L, int data);
 int retrieve(EPtr L, int position);
 void insertSorted(EPtr L, int data);
+void display(EPtr L);
+void makeNULL(EPtr L);
 
 int main(){
     EPtr L;
@@ -94,8 +96,25 @@ int retrieve(EPtr L, int position){
 
 void insertSorted(EPtr L, int data){
 
-    if(){
-        
+    if(L->count < MAX){
+        for(int i = L->count - 1; i >= 0 && data < L->elem[i]; i--){
+            L->elem[i + 1] = L->elem[i];
+        }
+
+        L.elem[i + 1] = data;
+        L->count++;
     }
 
+}
+
+void display(EPtr L){
+
+    for(int i = 0; i < L->count; i++){
+        printf("%d ", L->elem[i]);
+    }
+
+}
+
+void makeNULL(EPtr L){
+    free(L);
 }
