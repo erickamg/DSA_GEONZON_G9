@@ -24,39 +24,51 @@ int main(){
     initialize(L);
 
     for(int i = 0; i < 8; i++){
-        insertPos(L, i + 1, i + 1);
+        insertPos(L, i, i);
     }
-    printf("List after inserting at position:\n");
+    printf("List after inserting at position:");
     display(L);
 
     deletePos(L, 6);
-    printf("List after deleting at position:\n");
+    printf("\nList after deleting at position:");
     display(L);
 
     int data;
-    printf("Enter data: ");
+    printf("\nEnter data: ");
     scanf("%d", &data);
     int pos = locate(L, data);
     printf("Locating data %d at position %d", data, pos);
 
-    
+    int getPos;
+    printf("\nEnter position: ");
+    scanf("%d", &getPos);
+    int retPos = retrieve(L, getPos);
+    if(retPos != -1){
+        printf("Element retrieved from position %d is %d", getPos, retPos);
+    }else{
+        printf("No element retrieved.");
+    }
 
+    insertSorted(L, 6);
+    makeNULL(L);
+
+    return 0;
 }
 
 void initialize(EPtr L){
     L->count = 0;
-
-    return L;
 }
 
 void insertPos(EPtr L, int data, int position){
-
+    
+    int i;
+    
     if(L->count < MAX){
         if(position >= 0 && position <= L->count){
-            for(int i = L->count - 1; i != position - 1; i--){
+            for(i = L->count - 1; i != position - 1; i--){
                 L->elem[i + 1] = L->elem[i];
             }
-
+            
             L->elem[i] = data;
             L->count++;
         }
@@ -101,9 +113,9 @@ int locate(EPtr L, int data){
 }
 
 int retrieve(EPtr L, int position){
-
+    int i;
     if(position <= L->count && position >= 0){
-        for(int i = 0; i + 1 != position; i++ ){
+        for(i = 0; i + 1 != position; i++ ){
 
         }
 
@@ -116,13 +128,13 @@ int retrieve(EPtr L, int position){
 }
 
 void insertSorted(EPtr L, int data){
-
+    int i;
     if(L->count < MAX){
-        for(int i = L->count - 1; i >= 0 && data < L->elem[i]; i--){
+        for(i = L->count - 1; i >= 0 && data < L->elem[i]; i--){
             L->elem[i + 1] = L->elem[i];
         }
 
-        L.elem[i + 1] = data;
+        L->elem[i + 1] = data;
         L->count++;
     }
 
@@ -130,7 +142,7 @@ void insertSorted(EPtr L, int data){
 
 void display(EPtr L){
 
-    for(int i = 0; i < L->count; i++){
+    for(int i = 0; i < L->count - 1; i++){
         printf("%d ", L->elem[i]);
     }
 
