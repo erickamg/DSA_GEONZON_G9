@@ -50,6 +50,8 @@ int main(){
     }
 
     insertSorted(L, 6);
+    display(L);
+
     makeNULL(L);
 
     return 0;
