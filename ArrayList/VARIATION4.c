@@ -21,11 +21,11 @@ void resize(List *L);
 void makeNULL(List *L);
 
 int main(){
-    List *L;
+    List *L = (List*)malloc(sizeof(List));
     initialize(L);
 
     printf("Array after inserting at position: ");
-    for(int i = 0; i < 8; i++){
+    for(int i = 0; i < 10; i++){
         insertPos(L, i + 1, i);
     }
     display(L);
@@ -63,6 +63,22 @@ void initialize(List *L){
 
 }
 
+void resize(List *L){
+
+    L->max *= 2;
+    L->elemPtr = (int*)realloc(L->elemPtr,L->max * sizeof(int));
+
+}
+
+void display(List *L){
+
+    for(int i = 0; i < L->count; i++){
+        printf("%d ", L->elemPtr[i]);
+    }
+    printf("\n");
+
+}
+
 void insertPos(List *L, int data, int position){
 
     if (L->count >= L->max) {
@@ -70,12 +86,12 @@ void insertPos(List *L, int data, int position){
     }
     
 
-    if(position <= L->count && position - 1 >= 0){
-        for(int i = L->count - 1; i != position - 1; i--){
+    if(position <= L->count && position >= 0){
+        for(int i = L->count - 1; i >= position; i--){
             L->elemPtr[i + 1] = L->elemPtr[i];
         }
 
-        L->elemPtr[position - 1] = data;
+        L->elemPtr[position] = data;
         L->count++;
     }
 }
@@ -136,27 +152,12 @@ void insertSorted(List *L, int data){
         resize(L);
     }
 
-    for(i = L->count - 1; data < L->elemPtr[i]; i--){
+    for(i = L->count - 1; data < L->elemPtr[i] && i >= 0; i--){
         L->elemPtr[i + 1] = L->elemPtr[i];
     }
 
-    L->elemPtr[i] = data;
+    L->elemPtr[i + 1] = data;
     L->count++;
-}
-
-void display(List *L){
-
-    for(int i = 0; i <= L->count - 1; i++){
-        printf("%d ", L->elemPtr[i]);
-    }
-
-}
-
-void resize(List *L){
-
-    L->elemPtr = (int*)realloc(L->elemPtr, (LENGTH*2)*sizeof(int));
-    L->max = LENGTH * 2;
-
 }
 
 void makeNULL(List *L){
