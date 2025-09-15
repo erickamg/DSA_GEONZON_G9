@@ -56,7 +56,7 @@ bool isEmpty(Stack S){
 }
 
 Stack push(Stack S, int value){
-    if(isFull){
+    if(isFull(S)){
         printf("Stack is full.");
         exit(1);
     }
@@ -69,7 +69,7 @@ Stack push(Stack S, int value){
 
 int pop(Stack S){
 
-    if (isEmpty){
+    if (isEmpty(S)){
         printf("Stack underflow.");
         exit(1);
     }
@@ -81,7 +81,7 @@ int pop(Stack S){
 }
 
 int peek(Stack S){
-    if(isEmpty){
+    if(isEmpty(S)){
         printf("Stack is empty");
         exit(1);
     }
@@ -96,7 +96,7 @@ int top(Stack S){
 
 void display(Stack S){
 
-    if(isEmpty){
+    if(isEmpty(S)){
         printf("Stack is empty");
         return;
     }
