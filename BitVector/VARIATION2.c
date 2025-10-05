@@ -12,7 +12,7 @@ bool find(Set set, int element);
 Set Union(Set A, Set B);
 Set intersection(Set A, Set B);
 Set difference(Set A, Set B);
-void display(unsigned char set);
+void display(Set set);
 
 int main(){
     Set set;
