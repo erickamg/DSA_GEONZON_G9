@@ -20,6 +20,7 @@ void insertFirst(int* L, VHeap* V, int elem);
 void insertLast(int* L, VHeap* V, int elem);
 void insertPos(int* L, VHeap* V, int elem, int pos);
 void insertSorted(int* L, VHeap* V, int elem);
+oid deleteAllOccurrence(int* L, VHeap* V, int elem);
 
 int main(){
 
@@ -128,15 +129,52 @@ void insertSorted(int* L, VHeap* V, int elem){
 
     V->H[newCell].elem = elem;
     
-    int* trav = L;
+    int* trav = &L;
     
-    while(V->H[*trav].elem < V->H[newCell].elem) {
-        *trav = V->H[*trav].next;
-        before = *trav;
-        after++;
+    while(*trav != -1 && V->H[*trav].elem < elem) {
+        trav = &V->H[*trav].next;
     }
 
-    V->H[before].next = newCell;
-    V->H[newCell].next = *trav;
+    V->H[newCell].next = trav;
+    *trav = newCell;
+}
 
+void delete(int* L, VHeap* V, int elem){
+    int* trav = L;
+    int before = -1;
+
+    while (V->H[*trav].elem != elem) {
+        before = *trav;
+        *trav = &V->H[*trav].next;
+    }
+
+    V->H[before].next = V->H[*trav].next;
+
+    deallocSpace(V, trav);
+
+}
+
+void deleteAllOccurrence(int* L, VHeap* V, int elem){
+    int* trav = L;
+
+    while (*trav != -1){
+
+        if(V->H[*trav].elem == elem){
+            int temp = *trav;
+            *trav = V->H[*trav].next;
+            deallocSpace(V, temp);
+        }else{
+            *trav = &V->H[*trav].next;
+        }
+    }
+    
+}
+
+void display(int L, VHeap V){
+    int* trav = L;
+
+    while(*trav != -1){
+        printf("*d\n", V.H[*trav].elem);
+        *trav = V.H[*trav].next;
+    }
 }
