@@ -20,7 +20,7 @@ void insertFirst(int* L, VHeap* V, int elem);
 void insertLast(int* L, VHeap* V, int elem);
 void insertPos(int* L, VHeap* V, int elem, int pos);
 void insertSorted(int* L, VHeap* V, int elem);
-oid deleteAllOccurrence(int* L, VHeap* V, int elem);
+void deleteAllOccurrence(int* L, VHeap* V, int elem);
 
 int main(){
 
