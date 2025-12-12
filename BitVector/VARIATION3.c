@@ -14,7 +14,45 @@ void difference(Set A, Set B, Set C);
 void display(Set set);
 
 int main(){
+    Set A, B, U, I, D;
 
+    initialize(&A);
+    initialize(&B);
+
+    insert(&A, 1);
+    insert(&A, 3);
+    insert(&A, 5);
+    insert(&B, 3);
+    insert(&B, 4);
+    insert(&B, 6);
+
+    printf("Set A: ");
+    display(A);
+    printf("\n");
+
+    delete(&A, 5);
+    printf("Set A after deleting 5: ");
+    display(A);
+    printf("\n");
+
+    printf("Find 3 in A: %s\n", find(A, 3) ? "FOUND" : "NOT FOUND");
+
+    Union(A, B, U);
+    printf("Union: ");
+    display(U);
+    printf("\n");
+
+    intersection(A, B, I);
+    printf("Intersection: ");
+    display(I);
+    printf("\n");
+
+    difference(A, B, D);
+    printf("Difference: ");
+    display(D);
+    printf("\n");
+
+    return 0;
 }
 
 void initialize(Set *set){
